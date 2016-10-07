@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="com.purchasingpower.inappbrowser"
+        version="9.3.0">
+    <name>PPCInAppBrowser</name>
+    <description>Plugin for inAppBrowser</description>
+    <author>Purchasing Power</author>
+
+    <js-module src="www/PPCInAppBrowser.js" name="PPCInAppBrowser">
+        <clobbers target="PPCInAppBrowser"/>
+    </js-module>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="PPCInAppBrowser">
+                <param name="ios-package" value="PPCInAppBrowser"/>
+            </feature>
+        </config-file>
+        <source-file src="src/ios/PPCInAppBrowser.m"/>
+        <framework src="WebKit.framework"/>
+    </platform>
+    <!-- android -->
+    <platform name="android">
+        <framework src="com.android.support:appcompat-v7:23.1.0" />
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="PPCInAppBrowser">
+                <param name="android-package" value="com.purchasingpower.inappbrowser.PPCInAppBrowser"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.INTERNET"/>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity
+                    android:label="PPCInAppBrowser"
+                    android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+                    android:name="com.purchasingpower.inappbrowser.WebViewActivity"
+                    android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            </activity>
+        </config-file>
+        <source-file src="src/android/PPCInAppBrowser.java"
+                     target-dir="src/com/purchasingpower/inappbrowser/PPCInAppBrowser"/>
+        <source-file src="src/android/WebViewActivity.java"
+                     target-dir="src/com/purchasingpower/inappbrowser/WebViewActivity"/>
+        <source-file src="src/android/nativebrowserplugin.xml" target-dir="res/layout"/>
+        <source-file src="res/back_blue.png" target-dir="res/drawable"/>
+        <source-file src="res/forward_blue.png" target-dir="res/drawable"/>
+        <source-file src="res/back_gray.png" target-dir="res/drawable"/>
+        <source-file src="res/forward_gray.png" target-dir="res/drawable"/>
+    </platform>
+
+</plugin>
